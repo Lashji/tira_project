@@ -48,6 +48,10 @@ public static void main(String[] args)
 	    Tira2019 ht=new Tira2019();		      
 		ht.readInput();
 		ht.writeOutput();
+		Node node = new Node("1", "2");
+
+		System.out.println(node.hashKey());
+
 	}
 
 }
