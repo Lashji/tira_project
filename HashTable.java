@@ -1,5 +1,3 @@
-import java.util.Arrays;
-import java.util.stream.Stream;
 
 public class HashTable<T, E> {
     private Node<T, E>[] table;
@@ -13,8 +11,6 @@ public class HashTable<T, E> {
     public void insert(T key, E value) {
         Node<T, E> n = new Node<>(key, value);
 
-
-//        uncomment for unique values
         int index = find(key);
         if (index >= 0) {
             table[index] = n;
@@ -25,9 +21,6 @@ public class HashTable<T, E> {
 
         int hash = n.keyHash(this.size);
 
-//        System.out.println("key = " + key);
-//        System.out.println("size= " + this.size);
-//        System.out.println("Hashcode = " + hash);
         int end = this.size;
 
         if (table[hash] == null) {

@@ -37,11 +37,12 @@ public class Tira2019 {
 
     public static void main(String[] args) {
         Tira2019 ht = new Tira2019();
+        Scanner sc = new Scanner(System.in);
 
         ArrayList<String> setA = ht.readInput("setA.txt");
         ArrayList<String> setB = ht.readInput("setB.txt");
-
-        HashTable<String, String> hashtable = new HashTable<String, String>();
+//
+//        HashTable<String, String> hashtable = new HashTable<String, String>();
 //        test(hashtable);
 
 
@@ -52,9 +53,78 @@ public class Tira2019 {
         HashTable<String, Integer> xorLines = xor.xor();
         HashTable<String, Integer> andLines = xor.and();
 
-        ht.writeOutput(orLines, "or.txt");
-        ht.writeOutput(andLines, "and.txt");
-        ht.writeOutput(xorLines, "xor.txt");
+        System.out.println("Hello!" +
+                "Or has " + orLines.size() + " values" +
+                "Xor has " + xorLines.size() + " values" +
+                "And has " + andLines.size() + " values" +
+                " Type one of the options below to continue\n" +
+                "write -> Program writes the data into files\n" +
+                "delete -> Delete nodes from the data\n" +
+                "quit -> Program quits without writing\n" +
+                "");
+        while (true) {
+
+            String option = sc.nextLine();
+
+            if (option.toLowerCase().equals("quit")) {
+                break;
+            }
+
+            if (option.toLowerCase().equals("write")) {
+                ht.writeOutput(orLines, "or.txt");
+                ht.writeOutput(andLines, "and.txt");
+                ht.writeOutput(xorLines, "xor.txt");
+                break;
+            }
+
+            if (option.toLowerCase().equals("delete")) {
+                System.out.println("Select where you want to delete values from: ");
+                System.out.println("1. Or\n" +
+                        "2. Xor\n" +
+                        "3. And");
+                String deleteFrom = sc.nextLine();
+
+                while (true) {
+
+                    if (deleteFrom.toLowerCase().equals("or")) {
+                        orLines.print();
+                        String d = sc.nextLine();
+
+                        if (orLines.contains(d)) {
+                            orLines.delete(d);
+                            break;
+                        }
+
+                    }
+                    if (deleteFrom.toLowerCase().equals("xor")) {
+                        xorLines.print();
+                        String d = sc.nextLine();
+                        if (xorLines.contains(d)) {
+                            xorLines.delete(d);
+                            break;
+                        }
+
+                    }
+
+                    if (deleteFrom.toLowerCase().equals("and")) {
+                        andLines.print();
+
+                        String d = sc.nextLine();
+                        if (andLines.contains(d)) {
+                            andLines.delete(d);
+                            break;
+                        }
+
+                    }
+
+                    System.out.println("You need to select one of the 3 options");
+
+                }
+
+            }
+        }
+
+
     }
 
 
