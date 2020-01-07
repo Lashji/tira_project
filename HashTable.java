@@ -31,9 +31,9 @@ public class HashTable<T, E> {
             }
 
             if (i + 1 == end) {
-                    i = 0;
-                    System.out.println("Settings index to 0 && Inserting into index " + i);
-                    end = hash;
+                i = 0;
+                System.out.println("Settings index to 0 && Inserting into index " + i);
+                end = hash;
             }
         }
 
@@ -60,9 +60,15 @@ public class HashTable<T, E> {
             System.out.println(this.table[i]);
         }
     }
-    // public boolean get(String s) {
 
-    // }
+    public E get(T key) {
+        for (Node i : this.table) {
+            if (i.key() == key) {
+                return (E) i.value();
+            }
+        }
+        return null;
+    }
 
 //    public boolean delete(String s) {
 //        return false;
