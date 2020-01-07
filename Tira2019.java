@@ -55,6 +55,12 @@ public class Tira2019 {
 		hashtable.insert("2", "jtf");
 		hashtable.insert("1", "value2");
 		hashtable.insert("ghk", "333");
+
+		System.out.println("====== GETTING: ======");
+		System.out.println(hashtable.get("rrgrg"));
+		System.out.println(hashtable.get("key"));
+		System.out.println(hashtable.get("69"));
+		System.out.println("======= end GEtting==========");
 		 hashtable.print();
 	}
 
