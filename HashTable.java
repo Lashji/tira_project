@@ -11,6 +11,12 @@ public class HashTable<T, E> {
     public void insert(T key, E value) {
         Node<T, E> n = new Node<>(key, value);
 
+        int index = find(key);
+        if (index >= 0) {
+            table[index] = n;
+            return;
+        }
+
         increaseSize();
 
         int hash = n.keyHash(this.size);
@@ -51,15 +57,16 @@ public class HashTable<T, E> {
 
 
     private int find(T key) {
-        for (int i = 0 ; i < this.size; i++) {
-            if (this.table[i].key() == key) {
-                return i;
-            }
+        for (int i = 0; i < this.size; i++) {
+            if (this.table[i] != null)
+                if (this.table[i].key() == key) {
+                    return i;
+                }
         }
         return -1;
     }
 
-    public boolean includes(T key){
+    public boolean includes(T key) {
         return find(key) >= 0;
     }
 
@@ -71,10 +78,10 @@ public class HashTable<T, E> {
     }
 
 
-    public boolean delete(T key){
+    public boolean delete(T key) {
         int index = find(key);
 
-        if (index >= 0){
+        if (index >= 0) {
             this.table[index] = null;
             return true;
         }
@@ -84,13 +91,15 @@ public class HashTable<T, E> {
 
     public E get(T key) {
         for (Node i : this.table) {
-            if (i.key() == key) {
-                return (E) i.value();
+            if (i != null) {
+
+                if (i.key() == key) {
+                    return (E) i.value();
+                }
             }
         }
         return null;
     }
-
 
 
 }

@@ -61,6 +61,27 @@ public class Tira2019 {
 		System.out.println(hashtable.get("key"));
 		System.out.println(hashtable.get("69"));
 		System.out.println("======= end GEtting==========");
+
+
+		System.out.println("====== FINDING: ======");
+		System.out.println(hashtable.includes("rrgrg"));
+		System.out.println(hashtable.includes("key"));
+		System.out.println(hashtable.includes("69"));
+		System.out.println("======= end FINDING==========");
+
+		System.out.println("====== DELETING: ======");
+		System.out.println(hashtable.delete("rrgrg"));
+		System.out.println(hashtable.delete("key"));
+		System.out.println(hashtable.delete("69"));
+		System.out.println("======= end DELETING==========");
+
+
+		System.out.println("====== FINDING: ======");
+		System.out.println(hashtable.includes("rrgrg"));
+		System.out.println(hashtable.includes("key"));
+		System.out.println(hashtable.includes("69"));
+		System.out.println("======= end FINDING==========");
+
 		 hashtable.print();
 	}
 
