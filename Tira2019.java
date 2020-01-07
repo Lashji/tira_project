@@ -48,6 +48,11 @@ public class Tira2019 {
 		ht.writeOutput();
 
 		HashTable<String, String> hashtable = new HashTable<String, String>();
+		test(hashtable);
+	}
+
+
+	public static void test(HashTable<String,String> hashtable){
 		System.out.println("inserting");
 		hashtable.insert("key", "value");
 		hashtable.insert("rrgrg", "jt");
@@ -82,7 +87,7 @@ public class Tira2019 {
 		System.out.println(hashtable.includes("69"));
 		System.out.println("======= end FINDING==========");
 
-		 hashtable.print();
+		hashtable.print();
 	}
 
 }
