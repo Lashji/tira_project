@@ -1,93 +1,97 @@
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.Integer;
-import java.util.Hashtable;
+import java.io.*;
+import java.util.ArrayList;
+
+import java.util.Scanner;
 
 public class Tira2019 {
-	private void readInput() {
-		String line;
+    private ArrayList<String> readInput(String fileName) {
+        ArrayList<String> lines = new ArrayList<>();
+        try {
+            Scanner sc = new Scanner(new File(fileName));
+            while(sc.hasNextLine()){
+                lines.add(sc.nextLine());
+            }
+        } catch (IOException e) {
+            System.out.println("File not found.");
 
-		try {
-			BufferedReader br = new BufferedReader(new FileReader("setA.txt"));
+        }
+        return lines;
+    }
 
-			for (int i = 0; i < 5; i++) {
-				line = br.readLine();
-				String[] values = line.split("\n");
-				System.out.println(values[0]);
-			}
+    private void writeOutput(ArrayList<String> lines, String filename) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
+            for (String line : lines) {
+                bw.write(line);
+            }
 
-		} catch (IOException e) {
-			System.out.println("File not found.");
+            bw.close();
+        } catch (IOException e) {
+            System.err.format("IOException: %s%n", e);
+        }
+        System.out.println("Writing file...");
+    }
 
-		}
-	}
+    public static void main(String[] args) {
+        Tira2019 ht = new Tira2019();
 
-	private void writeOutput() {
-		int esim1 = 5;
-		int esim2 = 1;
-		String outputrow = esim1 + " " + esim2;
-		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter("outp.txt"));
-			// bw.write(outputrow);
-			// bw.newLine();
-			bw.write(outputrow);
-			bw.close();
-		} catch (IOException e) {
-			System.err.format("IOException: %s%n", e);
-		}
-		System.out.println("Writing file...");
-	}
+        ArrayList<String> setA = ht.readInput("setA.txt");
+        ArrayList<String> setB = ht.readInput("setB.txt");
 
-	public static void main(String[] args) {
-		Tira2019 ht = new Tira2019();
-		ht.readInput();
-		ht.writeOutput();
-
-		HashTable<String, String> hashtable = new HashTable<String, String>();
-		test(hashtable);
-	}
+        HashTable<String, String> hashtable = new HashTable<String, String>();
+        test(hashtable);
 
 
-	public static void test(HashTable<String,String> hashtable){
-		System.out.println("inserting");
-		hashtable.insert("key", "value");
-		hashtable.insert("rrgrg", "jt");
-		hashtable.insert("key", "value");
-		hashtable.insert("2", "jtf");
-		hashtable.insert("1", "value2");
-		hashtable.insert("ghk", "333");
-
-		System.out.println("====== GETTING: ======");
-		System.out.println(hashtable.get("rrgrg"));
-		System.out.println(hashtable.get("key"));
-		System.out.println(hashtable.get("69"));
-		System.out.println("======= end GEtting==========");
+        XorUtils xor = new XorUtils(setA, setB);
 
 
-		System.out.println("====== FINDING: ======");
-		System.out.println(hashtable.includes("rrgrg"));
-		System.out.println(hashtable.includes("key"));
-		System.out.println(hashtable.includes("69"));
-		System.out.println("======= end FINDING==========");
+        HashTable<String, Integer> orLines = xor.or();
+        HashTable<String, Integer><String> xorLines = xor.xor();
+        HashTable<String, Integer><String> andLines = xor.and();
 
-		System.out.println("====== DELETING: ======");
-		System.out.println(hashtable.delete("rrgrg"));
-		System.out.println(hashtable.delete("key"));
-		System.out.println(hashtable.delete("69"));
-		System.out.println("======= end DELETING==========");
+        ht.writeOutput(orLines, "or.txt");
+        ht.writeOutput(andLines, "and.txt");
+        ht.writeOutput(xorLines, "xor.txt");
+    }
 
 
-		System.out.println("====== FINDING: ======");
-		System.out.println(hashtable.includes("rrgrg"));
-		System.out.println(hashtable.includes("key"));
-		System.out.println(hashtable.includes("69"));
-		System.out.println("======= end FINDING==========");
+    public static void test(HashTable<String, String> hashtable) {
+        System.out.println("inserting");
+        hashtable.insert("key", "value");
+        hashtable.insert("rrgrg", "jt");
+        hashtable.insert("key", "value");
+        hashtable.insert("2", "jtf");
+        hashtable.insert("1", "value2");
+        hashtable.insert("ghk", "333");
 
-		hashtable.print();
-	}
+        System.out.println("====== GETTING: ======");
+        System.out.println(hashtable.get("rrgrg"));
+        System.out.println(hashtable.get("key"));
+        System.out.println(hashtable.get("69"));
+        System.out.println("======= end GEtting==========");
+
+
+        System.out.println("====== FINDING: ======");
+        System.out.println(hashtable.contains("rrgrg"));
+        System.out.println(hashtable.contains("key"));
+        System.out.println(hashtable.contains("69"));
+        System.out.println("======= end FINDING==========");
+
+        System.out.println("====== DELETING: ======");
+        System.out.println(hashtable.delete("rrgrg"));
+        System.out.println(hashtable.delete("key"));
+        System.out.println(hashtable.delete("69"));
+        System.out.println("======= end DELETING==========");
+
+
+        System.out.println("====== FINDING: ======");
+        System.out.println(hashtable.contains("rrgrg"));
+        System.out.println(hashtable.contains("key"));
+        System.out.println(hashtable.contains("69"));
+        System.out.println("======= end FINDING==========");
+
+        hashtable.print();
+    }
 
 }

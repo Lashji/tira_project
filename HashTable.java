@@ -13,6 +13,8 @@ public class HashTable<T, E> {
     public void insert(T key, E value) {
         Node<T, E> n = new Node<>(key, value);
 
+
+//        uncomment for unique values
         int index = find(key);
         if (index >= 0) {
             table[index] = n;
@@ -68,18 +70,24 @@ public class HashTable<T, E> {
         return -1;
     }
 
-    public boolean includes(T key) {
+    public boolean contains(T key) {
         return find(key) >= 0;
     }
 
-    private void decreaseSize(int nullIndex){
+    private void decreaseSize(int nullIndex) {
+        int j = 0;
+        this.size--;
+        Node[] tmp = new Node[this.size];
+        for (int i = 0; i < this.table.length; i++) {
 
-        Node<T,E>[] t1 = Arrays.copyOfRange(this.table,0,nullIndex-1);
-        Node<T,E>[] t2 = Arrays.copyOfRange(this.table,nullIndex+1,this.size--);
+            if (i == nullIndex) {
+                i++;
+            }
+            tmp[j] = this.table[i];
+            j++;
+        }
 
-        Node<T, E>[] nodes = Stream.concat(Arrays.stream(t1), Arrays.stream(t2))
-                .toArray(Node[]::new);
-        this.table = nodes;
+        this.table = tmp;
     }
 
 

@@ -24,7 +24,6 @@ public class Node<T, E> {
     }
 
     public int keyHash(int count) {
-        System.out.println("COUNT = "+ count);
         return this.key.hashCode() % count;
     }
 
