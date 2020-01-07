@@ -24,33 +24,30 @@ public class HashTable<T, E> {
 
         for (int i = hash; i < end; i++) {
 
-            if (i + 1 == end && end != hash) {
-                i = 0;
-                System.out.println("end == hash && Inserting into index " + i);
-
-                end = hash;
-            }
-
             if (table[i] == null) {
                 System.out.println("Inserting into index " + i);
-                table[hash] = n;
+                table[i] = n;
                 return;
             }
 
+            if (i + 1 == end) {
+                    i = 0;
+                    System.out.println("Settings index to 0 && Inserting into index " + i);
+                    end = hash;
+            }
         }
 
     }
 
     public void increaseSize() {
-
+        int oldsize = this.size;
         this.size++;
         Node<T, E>[] tmp = new Node[this.size];
 
-        System.arraycopy(this.table, 0, tmp, 0, this.size);
+        System.arraycopy(this.table, 0, tmp, 0, oldsize);
 
         this.table = tmp;
     }
-
 
 
 //    public boolean find(String s) {
