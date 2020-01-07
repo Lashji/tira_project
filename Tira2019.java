@@ -9,7 +9,7 @@ public class Tira2019 {
         ArrayList<String> lines = new ArrayList<>();
         try {
             Scanner sc = new Scanner(new File(fileName));
-            while(sc.hasNextLine()){
+            while (sc.hasNextLine()) {
                 lines.add(sc.nextLine());
             }
         } catch (IOException e) {
@@ -19,11 +19,13 @@ public class Tira2019 {
         return lines;
     }
 
-    private void writeOutput(ArrayList<String> lines, String filename) {
+    private void writeOutput(HashTable<String, Integer> lines, String filename) {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
-            for (String line : lines) {
-                bw.write(line);
+
+            for (int i = 0; i < lines.size(); i++) {
+                bw.write(lines.get(i).toString());
+                bw.newLine();
             }
 
             bw.close();
@@ -40,15 +42,15 @@ public class Tira2019 {
         ArrayList<String> setB = ht.readInput("setB.txt");
 
         HashTable<String, String> hashtable = new HashTable<String, String>();
-        test(hashtable);
+//        test(hashtable);
 
 
         XorUtils xor = new XorUtils(setA, setB);
 
 
         HashTable<String, Integer> orLines = xor.or();
-        HashTable<String, Integer><String> xorLines = xor.xor();
-        HashTable<String, Integer><String> andLines = xor.and();
+        HashTable<String, Integer> xorLines = xor.xor();
+        HashTable<String, Integer> andLines = xor.and();
 
         ht.writeOutput(orLines, "or.txt");
         ht.writeOutput(andLines, "and.txt");

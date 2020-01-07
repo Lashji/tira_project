@@ -24,12 +24,12 @@ public class Node<T, E> {
     }
 
     public int keyHash(int count) {
-        return this.key.hashCode() % count;
+        return Math.abs(this.key.hashCode() % count);
     }
 
     @Override
     public String toString() {
-        return this.key + " : " + this.value;
+        return this.key + " " + this.value;
     }
 
 }

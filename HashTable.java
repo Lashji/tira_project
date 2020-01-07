@@ -24,6 +24,9 @@ public class HashTable<T, E> {
         increaseSize();
 
         int hash = n.keyHash(this.size);
+
+        System.out.println("key = " + key);
+        System.out.println("size= " + this.size);
         System.out.println("Hashcode = " + hash);
         int end = this.size;
 
@@ -91,6 +94,14 @@ public class HashTable<T, E> {
     }
 
 
+    public Node<T,E> get(int index){
+        if (index <0 || index > this.size -1){
+            return null;
+        }
+
+        return this.table[index];
+    }
+
     public void print() {
         System.out.println("PRINTING FILES");
         for (int i = 0; i < this.size; i++) {
@@ -123,5 +134,8 @@ public class HashTable<T, E> {
         return null;
     }
 
+    public int size(){
+        return this.size;
+    }
 
 }
