@@ -50,9 +50,14 @@ public class HashTable<T, E> {
     }
 
 
-//    public boolean find(String s) {
-//        return false;
-//    }
+    public boolean find(T key) {
+        for (Node i : this.table) {
+            if (i.key() == key) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void print() {
         System.out.println("PRINTING FILES");
