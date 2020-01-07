@@ -25,9 +25,9 @@ public class HashTable<T, E> {
 
         int hash = n.keyHash(this.size);
 
-        System.out.println("key = " + key);
-        System.out.println("size= " + this.size);
-        System.out.println("Hashcode = " + hash);
+//        System.out.println("key = " + key);
+//        System.out.println("size= " + this.size);
+//        System.out.println("Hashcode = " + hash);
         int end = this.size;
 
         if (table[hash] == null) {
@@ -65,10 +65,11 @@ public class HashTable<T, E> {
 
     private int find(T key) {
         for (int i = 0; i < this.size; i++) {
-            if (this.table[i] != null)
-                if (this.table[i].key() == key) {
+            if (this.table[i] != null) {
+                if (this.table[i].key().equals(key)) {
                     return i;
                 }
+            }
         }
         return -1;
     }
@@ -94,8 +95,8 @@ public class HashTable<T, E> {
     }
 
 
-    public Node<T,E> get(int index){
-        if (index <0 || index > this.size -1){
+    public Node<T, E> get(int index) {
+        if (index < 0 || index > this.size - 1) {
             return null;
         }
 
@@ -123,10 +124,11 @@ public class HashTable<T, E> {
     }
 
     public E get(T key) {
+        System.out.printf("get T");
         for (Node i : this.table) {
             if (i != null) {
 
-                if (i.key() == key) {
+                if (i.key().equals(key)) {
                     return (E) i.value();
                 }
             }
@@ -134,7 +136,7 @@ public class HashTable<T, E> {
         return null;
     }
 
-    public int size(){
+    public int size() {
         return this.size;
     }
 

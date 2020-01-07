@@ -29,7 +29,7 @@ public class Node<T, E> {
 
     @Override
     public String toString() {
-        return this.key + " " + this.value;
+        return this.key + "\t" + this.value;
     }
 
 }

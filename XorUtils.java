@@ -19,6 +19,7 @@ public class XorUtils {
 
             if (hashtable.contains(line)) {
                 hashtable.insert(line, hashtable.get(line) + 1);
+                System.out.println("HAShtable contains");
             } else {
                 hashtable.insert(line, 1);
             }
@@ -28,6 +29,8 @@ public class XorUtils {
 
             if (hashtable.contains(line)) {
                 hashtable.insert(line, hashtable.get(line) + 1);
+                System.out.println("HAShtable contains");
+
             } else {
                 hashtable.insert(line, 1);
             }
