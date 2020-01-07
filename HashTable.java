@@ -1,3 +1,5 @@
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class HashTable<T, E> {
     private Node<T, E>[] table;
@@ -70,6 +72,17 @@ public class HashTable<T, E> {
         return find(key) >= 0;
     }
 
+    private void decreaseSize(int nullIndex){
+
+        Node<T,E>[] t1 = Arrays.copyOfRange(this.table,0,nullIndex-1);
+        Node<T,E>[] t2 = Arrays.copyOfRange(this.table,nullIndex+1,this.size--);
+
+        Node<T, E>[] nodes = Stream.concat(Arrays.stream(t1), Arrays.stream(t2))
+                .toArray(Node[]::new);
+        this.table = nodes;
+    }
+
+
     public void print() {
         System.out.println("PRINTING FILES");
         for (int i = 0; i < this.size; i++) {
@@ -83,6 +96,7 @@ public class HashTable<T, E> {
 
         if (index >= 0) {
             this.table[index] = null;
+            decreaseSize(index);
             return true;
         }
 
