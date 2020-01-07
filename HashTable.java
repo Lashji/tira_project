@@ -50,13 +50,17 @@ public class HashTable<T, E> {
     }
 
 
-    public boolean find(T key) {
-        for (Node i : this.table) {
-            if (i.key() == key) {
-                return true;
+    private int find(T key) {
+        for (int i = 0 ; i < this.size; i++) {
+            if (this.table[i].key() == key) {
+                return i;
             }
         }
-        return false;
+        return -1;
+    }
+
+    public boolean includes(T key){
+        return find(key) >= 0;
     }
 
     public void print() {
@@ -64,6 +68,18 @@ public class HashTable<T, E> {
         for (int i = 0; i < this.size; i++) {
             System.out.println(this.table[i]);
         }
+    }
+
+
+    public boolean delete(T key){
+        int index = find(key);
+
+        if (index >= 0){
+            this.table[index] = null;
+            return true;
+        }
+
+        return false;
     }
 
     public E get(T key) {
@@ -75,8 +91,6 @@ public class HashTable<T, E> {
         return null;
     }
 
-//    public boolean delete(String s) {
-//        return false;
-//    }
+
 
 }
