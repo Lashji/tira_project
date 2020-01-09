@@ -53,16 +53,16 @@ public class Tira2019 {
         HashTable<String, Integer> xorLines = xor.xor();
         HashTable<String, Integer> andLines = xor.and();
 
-        System.out.println("Hello!" +
-                "Or has " + orLines.size() + " values" +
-                "Xor has " + xorLines.size() + " values" +
-                "And has " + andLines.size() + " values" +
-                " Type one of the options below to continue\n" +
-                "write -> Program writes the data into files\n" +
-                "delete -> Delete nodes from the data\n" +
-                "quit -> Program quits without writing\n" +
-                "");
         while (true) {
+            System.out.println("Hello!\n" +
+                    "Type one of the options below to continue\n" +
+                    "write : Program writes the data into files\n" +
+                    "delete : Delete nodes from the data\n" +
+                    "quit : Program quits without writing\n\n" +
+                    "Set Or has " + orLines.size() + " values\n" +
+                    "Set Xor has " + xorLines.size() + " values\n" +
+                    "Set And has " + andLines.size() + " values\n" +
+                    "");
 
             String option = sc.nextLine();
 
@@ -78,45 +78,30 @@ public class Tira2019 {
             }
 
             if (option.toLowerCase().equals("delete")) {
-                System.out.println("Select where you want to delete values from: ");
+                System.out.println("Select where you want to delete values from: \n");
+
+                while (true) {
                 System.out.println("1. Or\n" +
                         "2. Xor\n" +
                         "3. And");
-                String deleteFrom = sc.nextLine();
+                    boolean d = false;
 
-                while (true) {
+                    String deleteFrom = sc.nextLine();
 
                     if (deleteFrom.toLowerCase().equals("or")) {
-                        orLines.print();
-                        String d = sc.nextLine();
-
-                        if (orLines.contains(d)) {
-                            orLines.delete(d);
-                            break;
-                        }
-
+                        d = ht.delete(orLines, sc);
                     }
                     if (deleteFrom.toLowerCase().equals("xor")) {
-                        xorLines.print();
-                        String d = sc.nextLine();
-                        if (xorLines.contains(d)) {
-                            xorLines.delete(d);
-                            break;
-                        }
-
+                         d = ht.delete(xorLines, sc);
                     }
 
                     if (deleteFrom.toLowerCase().equals("and")) {
-                        andLines.print();
-
-                        String d = sc.nextLine();
-                        if (andLines.contains(d)) {
-                            andLines.delete(d);
-                            break;
-                        }
-
+                         d = ht.delete(andLines, sc);
                     }
 
+                    if (d) {
+                        break;
+                    }
                     System.out.println("You need to select one of the 3 options");
 
                 }
@@ -127,6 +112,22 @@ public class Tira2019 {
 
     }
 
+    public boolean delete(HashTable<String, Integer> lines, Scanner sc){
+        if (lines.isEmpty()){
+            System.out.println("No values");
+            return false;
+        }
+        lines.printKeys();
+
+        String d = sc.nextLine();
+        if (lines.contains(d)) {
+            lines.delete(d);
+            return true;
+        } else {
+            System.out.println("Value does not exist");
+            return false;
+        }
+    }
 
     public static void test(HashTable<String, String> hashtable) {
         System.out.println("inserting");

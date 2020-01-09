@@ -31,19 +31,19 @@ public class HashTable<T, E> {
         for (int i = hash; i < end; i++) {
 
             if (table[i] == null) {
-                System.out.println("Inserting into index " + i);
                 table[i] = n;
                 return;
             }
 
             if (i + 1 == end) {
                 i = 0;
-                System.out.println("Settings index to 0 && Inserting into index " + i);
                 end = hash;
             }
         }
 
     }
+
+
 
     public void increaseSize() {
         int oldsize = this.size;
@@ -75,7 +75,7 @@ public class HashTable<T, E> {
         int j = 0;
         this.size--;
         Node[] tmp = new Node[this.size];
-        for (int i = 0; i < this.table.length; i++) {
+        for (int i = 0; i < this.size; i++) {
 
             if (i == nullIndex) {
                 i++;
@@ -97,7 +97,6 @@ public class HashTable<T, E> {
     }
 
     public void print() {
-        System.out.println("PRINTING FILES");
         for (int i = 0; i < this.size; i++) {
             System.out.println(this.table[i]);
         }
@@ -117,7 +116,6 @@ public class HashTable<T, E> {
     }
 
     public E get(T key) {
-        System.out.printf("get T");
         for (Node i : this.table) {
             if (i != null) {
 
@@ -131,6 +129,16 @@ public class HashTable<T, E> {
 
     public int size() {
         return this.size;
+    }
+
+    public void printKeys(){
+        for (int i = 0; i < this.size; i++) {
+            System.out.println(this.table[i].key());
+        }
+    }
+
+    public boolean isEmpty(){
+        return this.size < 0;
     }
 
 }
