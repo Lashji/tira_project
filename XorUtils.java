@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class XorUtils {
 
-
     private ArrayList<String> setA;
     private ArrayList<String> setB;
 
@@ -53,6 +52,7 @@ public class XorUtils {
         return hashtable;
 
     }
+
 
     public HashTable<String, Integer> xor() {
 

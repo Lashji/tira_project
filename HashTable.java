@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class HashTable<T, E> {
     private Node<T, E>[] table;
@@ -72,16 +75,14 @@ public class HashTable<T, E> {
     }
 
     private void decreaseSize(int nullIndex) {
-        int j = 0;
         this.size--;
-        Node[] tmp = new Node[this.size];
-        for (int i = 0; i < this.size; i++) {
+        ArrayList<Node<T,E>> tmpList = new ArrayList<>();
+        Collections.addAll(tmpList, this.table);
+        tmpList.remove(nullIndex);
 
-            if (i == nullIndex) {
-                i++;
-            }
-            tmp[j] = this.table[i];
-            j++;
+        Node<T,E>[] tmp = new Node[tmpList.size()];
+       for (int i = 0; i < tmpList.size(); i++) {
+            tmp[i] = tmpList.get(i);
         }
 
         this.table = tmp;
@@ -111,7 +112,7 @@ public class HashTable<T, E> {
             decreaseSize(index);
             return true;
         }
-
+        System.out.println("returning false from delete");
         return false;
     }
 
@@ -132,13 +133,14 @@ public class HashTable<T, E> {
     }
 
     public void printKeys(){
-        for (int i = 0; i < this.size; i++) {
-            System.out.println(this.table[i].key());
+        for (int i = 0; i < this.table.length; i++) {
+            if (this.table[i] != null)
+                System.out.println(this.table[i].key());
         }
     }
 
     public boolean isEmpty(){
-        return this.size < 0;
+        return this.size < 1;
     }
 
 }

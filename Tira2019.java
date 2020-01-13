@@ -56,15 +56,18 @@ public class Tira2019 {
         while (true) {
             System.out.println("Hello!\n" +
                     "Type one of the options below to continue\n" +
+                    "=========================================\n"+
                     "write : Program writes the data into files\n" +
                     "delete : Delete nodes from the data\n" +
-                    "quit : Program quits without writing\n\n" +
-                    "Set Or has " + orLines.size() + " values\n" +
-                    "Set Xor has " + xorLines.size() + " values\n" +
-                    "Set And has " + andLines.size() + " values\n" +
-                    "");
+                    "quit : Program quits without writing\n" +
+                    "=========================================\n"+
+                    "Or has " + orLines.size() + " values\n" +
+                    "Xor has " + xorLines.size() + " values\n" +
+                    "And has " + andLines.size() + " values\n" +
+                    "=========================================\n"
+            );
 
-            String option = sc.nextLine();
+                    String option = sc.nextLine();
 
             if (option.toLowerCase().equals("quit")) {
                 break;
@@ -78,7 +81,7 @@ public class Tira2019 {
             }
 
             if (option.toLowerCase().equals("delete")) {
-                System.out.println("Select where you want to delete values from: \n");
+                System.out.println("Type number to select where you want to delete values from: \n");
 
                 while (true) {
                 System.out.println("1. Or\n" +
@@ -88,14 +91,14 @@ public class Tira2019 {
 
                     String deleteFrom = sc.nextLine();
 
-                    if (deleteFrom.toLowerCase().equals("or")) {
+                    if (deleteFrom.toLowerCase().equals("1") || deleteFrom.toLowerCase().equals("or")) {
                         d = ht.delete(orLines, sc);
                     }
-                    if (deleteFrom.toLowerCase().equals("xor")) {
+                    if (deleteFrom.toLowerCase().equals("2")) {
                          d = ht.delete(xorLines, sc);
                     }
 
-                    if (deleteFrom.toLowerCase().equals("and")) {
+                    if (deleteFrom.toLowerCase().equals("3")) {
                          d = ht.delete(andLines, sc);
                     }
 
