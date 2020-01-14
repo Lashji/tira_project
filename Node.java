@@ -23,6 +23,11 @@ public class Node<T, E> {
         return this.value;
     }
 
+    /**
+     *
+     * @param count
+     * @return hash for the key
+     */
     public int keyHash(int count) {
         return Math.abs(this.key.hashCode() % count);
     }

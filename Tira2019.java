@@ -53,6 +53,7 @@ public class Tira2019 {
         HashTable<String, Integer> xorLines = xor.xor();
         HashTable<String, Integer> andLines = xor.and();
 
+//      UI
         while (true) {
             System.out.println("Hello!\n" +
                     "Type one of the options below to continue\n" +
@@ -115,6 +116,12 @@ public class Tira2019 {
 
     }
 
+    /**
+     *
+     * @param lines
+     * @param sc
+     * @return true if delete was successful else false
+     */
     public boolean delete(HashTable<String, Integer> lines, Scanner sc){
         if (lines.isEmpty()){
             System.out.println("No values");

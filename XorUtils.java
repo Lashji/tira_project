@@ -11,6 +11,10 @@ public class XorUtils {
         this.setB = setB;
     }
 
+    /**
+     * Combines values from setA and setB
+     * @return Hashtable with values
+     */
     public HashTable<String, Integer> or() {
         HashTable<String, Integer> hashtable = new HashTable<String, Integer>();
 
@@ -35,6 +39,10 @@ public class XorUtils {
 
     }
 
+    /**
+     * Combines values that setA and setB both have
+     * @return Hashtable with values
+     */
     public HashTable<String, Integer> and() {
         ArrayList<String> lines = new ArrayList<>();
 
@@ -53,7 +61,10 @@ public class XorUtils {
 
     }
 
-
+    /**
+     * Combines values that setA or setB and but both have
+     * @return Hashtable with values
+     */
     public HashTable<String, Integer> xor() {
 
         HashTable<String, Integer> hashtable = new HashTable<String, Integer>();
@@ -71,9 +82,4 @@ public class XorUtils {
         return hashtable;
     }
 
-    private HashTable<String, Integer> getTable() {
-        HashTable<String, Integer> hashtable = new HashTable<String, Integer>();
-        return hashtable;
-
-    }
 }

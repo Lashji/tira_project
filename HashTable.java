@@ -11,6 +11,11 @@ public class HashTable<T, E> {
         this.table = new Node[this.size];
     }
 
+    /**
+     *  Inserts value into the hashtable
+     * @param key
+     * @param value
+     */
     public void insert(T key, E value) {
         Node<T, E> n = new Node<>(key, value);
 
@@ -47,7 +52,9 @@ public class HashTable<T, E> {
     }
 
 
-
+    /**
+     * Increases array size dynamically
+     */
     public void increaseSize() {
         int oldsize = this.size;
         this.size++;
@@ -58,7 +65,11 @@ public class HashTable<T, E> {
         this.table = tmp;
     }
 
-
+    /**
+     *  Finds Node from array with given key
+     * @param key
+     * @return index if found else return -1
+     */
     private int find(T key) {
         for (int i = 0; i < this.size; i++) {
             if (this.table[i] != null) {
@@ -70,10 +81,19 @@ public class HashTable<T, E> {
         return -1;
     }
 
+    /**
+     * Method to find out if key is in hashtable
+     * @param key
+     * @return boolean
+     */
     public boolean contains(T key) {
         return find(key) >= 0;
     }
 
+    /**
+     * Decreases HashTable size dynamically
+     * @param nullIndex
+     */
     private void decreaseSize(int nullIndex) {
         this.size--;
         ArrayList<Node<T,E>> tmpList = new ArrayList<>();
@@ -88,7 +108,11 @@ public class HashTable<T, E> {
         this.table = tmp;
     }
 
-
+    /**
+     * Returns node with given index
+     * @param index
+     * @return
+     */
     public Node<T, E> get(int index) {
         if (index < 0 || index > this.size - 1) {
             return null;
@@ -97,13 +121,20 @@ public class HashTable<T, E> {
         return this.table[index];
     }
 
+    /**
+     * Prints all items
+     */
     public void print() {
         for (int i = 0; i < this.size; i++) {
             System.out.println(this.table[i]);
         }
     }
 
-
+    /**
+     * Deletes item from array
+     * @param key
+     * @return boolean
+     */
     public boolean delete(T key) {
         int index = find(key);
 
@@ -116,6 +147,11 @@ public class HashTable<T, E> {
         return false;
     }
 
+    /**
+     *  Returns Node with given key
+     * @param key
+     * @return Node
+     */
     public E get(T key) {
         for (Node i : this.table) {
             if (i != null) {
@@ -128,10 +164,16 @@ public class HashTable<T, E> {
         return null;
     }
 
+    /**
+     * @return current arraySize
+     */
     public int size() {
         return this.size;
     }
 
+    /**
+     * Prints array keys
+     */
     public void printKeys(){
         for (int i = 0; i < this.table.length; i++) {
             if (this.table[i] != null)
@@ -139,6 +181,10 @@ public class HashTable<T, E> {
         }
     }
 
+    /**
+     *
+     * @return boolean
+     */
     public boolean isEmpty(){
         return this.size < 1;
     }
